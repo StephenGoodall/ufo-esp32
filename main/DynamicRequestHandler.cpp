@@ -177,6 +177,7 @@ bool DynamicRequestHandler::HandleInfoRequest(std::list<TParam>& params, HttpRes
 	sBody.printf("\"dtenabled\":\"%u\",", mpUfo->GetConfig().mbDTEnabled);
 	sBody.printf("\"dtenvid\":\"%s\",", mpUfo->GetConfig().msDTEnvIdOrUrl.c_str());
 	//sBody.printf("\"dtapitoken\":\"%s\",", mpUfo->GetConfig().msDTApiToken.c_str());
+	sBody.printf("\"dtapiselector\":\"%s\",", mpUfo->GetConfig().msDTApiSelector.c_str());
 	sBody.printf("\"dtinterval\":\"%u\",", mpUfo->GetConfig().muDTInterval);
 	sBody.printf("\"dtmonitoring\":\"%u\",", mpUfo->GetConfig().mbDTMonitoring);
 	sBody.printf("\"wifimode\":\"%u\"", mpUfo->GetConfig().muWifiMode);
@@ -207,6 +208,8 @@ bool DynamicRequestHandler::HandleDynatraceIntegrationRequest(std::list<TParam>&
 			sEnvId = (*it).paramValue;
 		else if ((*it).paramName == "dtapitoken")
 			sApiToken = (*it).paramValue;
+		else if ((*it).paramName == "dtapiselector")
+			sApiSelector = (*it).paramValue;
 		else if ((*it).paramName == "dtinterval")
 			uInterval = (*it).paramValue.toInt();
 		it++;
@@ -216,6 +219,8 @@ bool DynamicRequestHandler::HandleDynatraceIntegrationRequest(std::list<TParam>&
 	mpUfo->GetConfig().msDTEnvIdOrUrl = sEnvId;
 	if (sApiToken.length())
 		mpUfo->GetConfig().msDTApiToken = sApiToken;
+	if (sApiSelector.length())
+		mpUfo->GetConfig().msDTApiSelector = sApiSelector;
 	mpUfo->GetConfig().muDTInterval = uInterval;
 
 	if (mpUfo->GetConfig().Write())

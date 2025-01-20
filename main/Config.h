@@ -45,6 +45,7 @@ public:
 
     String msDTEnvIdOrUrl;
     String msDTApiToken;
+	String msDTApiSelector;
 	bool mbDTEnabled;
     __uint32_t muDTInterval;
 

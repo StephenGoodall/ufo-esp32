@@ -92,6 +92,7 @@ void ParseIntegrationUrl(Url& rUrl, String& sEnvIdOrUrl, String& sApiToken, char
     String sHelp;
     ESP_LOGI(LOGTAG, "%s", sEnvIdOrUrl.c_str());
     ESP_LOGD(LOGTAG, "%s", sApiToken.c_str());
+    ESP_LOGD(LOGTAG, "%s", problemSelector.c_str());
 
     if (sEnvIdOrUrl.length()){
         if (sEnvIdOrUrl.indexOf(".") < 0){ //an environment id
@@ -128,28 +129,36 @@ void DynatraceIntegration::Run(__uint8_t uTaskId) {
             if (uConfigRevision != mActConfigRevision){
                 uConfigRevision = mActConfigRevision; //memory barrier would be needed here
             }
-            ParseIntegrationUrl(mDtUrl, mpConfig->msDTEnvIdOrUrl, mpConfig->msDTApiToken, "status(\"open\")");
+
+            //If the selector is set we will add it to the subsequent calls
+            commonProblemSelector = "";
+            if (!mpConfig->msDTApiSelector.empty()){
+                commonProblemSelector = mpConfig->msDTApiSelector.c_str();
+                commonProblemSelector = commonProblemSelector + ",";
+            }
+
+            ParseIntegrationUrl(mDtUrl, mpConfig->msDTEnvIdOrUrl, mpConfig->msDTApiToken, commonProblemSelector + "status(\"open\")");
             int value = GetData();
             ESP_LOGI(LOGTAG, "Open Dynatrace problems: %i", value);
             if (value >= 0) {
                 miTotalProblems = value;
             }
 
-            ParseIntegrationUrl(mDtUrl, mpConfig->msDTEnvIdOrUrl, mpConfig->msDTApiToken, "status(\"open\"),impactLevel(\"INFRASTRUCTURE\")");
+            ParseIntegrationUrl(mDtUrl, mpConfig->msDTEnvIdOrUrl, mpConfig->msDTApiToken, commonProblemSelector + "status(\"open\"),impactLevel(\"INFRASTRUCTURE\")");
             value = GetData();
             ESP_LOGI(LOGTAG, "Open Dynatrace infrastructure problems: %i", value);
             if (value >= 0) {
                 miInfrastructureProblems = value;
             }
 
-            ParseIntegrationUrl(mDtUrl, mpConfig->msDTEnvIdOrUrl, mpConfig->msDTApiToken, "status(\"open\"),impactLevel(\"SERVICES\")");
+            ParseIntegrationUrl(mDtUrl, mpConfig->msDTEnvIdOrUrl, mpConfig->msDTApiToken, commonProblemSelector + "status(\"open\"),impactLevel(\"SERVICES\")");
             value = GetData();
             ESP_LOGI(LOGTAG, "Open Dynatrace services problems: %i", value);
             if (value >= 0) {
                 miServiceProblems = value;
             }
 
-            ParseIntegrationUrl(mDtUrl, mpConfig->msDTEnvIdOrUrl, mpConfig->msDTApiToken, "status(\"open\"),impactLevel(\"APPLICATION\")");
+            ParseIntegrationUrl(mDtUrl, mpConfig->msDTEnvIdOrUrl, mpConfig->msDTApiToken, commonProblemSelector + "status(\"open\"),impactLevel(\"APPLICATION\")");
             value = GetData();
             ESP_LOGI(LOGTAG, "Open Dynatrace application problems: %i", value);
             if (value >= 0) {
