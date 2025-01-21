@@ -176,7 +176,7 @@ bool DynamicRequestHandler::HandleInfoRequest(std::list<TParam>& params, HttpRes
 	sBody.printf("\"location\":\"%s\",", mpUfo->GetConfig().msLocation.c_str());
 	sBody.printf("\"dtenabled\":\"%u\",", mpUfo->GetConfig().mbDTEnabled);
 	sBody.printf("\"dtenvid\":\"%s\",", mpUfo->GetConfig().msDTEnvIdOrUrl.c_str());
-	//sBody.printf("\"dtapitoken\":\"%s\",", mpUfo->GetConfig().msDTApiToken.c_str());
+	sBody.printf("\"dtapitoken\":\"%s\",", mpUfo->GetConfig().msDTApiToken.c_str());
 	sBody.printf("\"dtapiselector\":\"%s\",", mpUfo->GetConfig().msDTApiSelector.c_str());
 	sBody.printf("\"dtinterval\":\"%u\",", mpUfo->GetConfig().muDTInterval);
 	sBody.printf("\"dtmonitoring\":\"%u\",", mpUfo->GetConfig().mbDTMonitoring);
