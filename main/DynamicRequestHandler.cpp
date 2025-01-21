@@ -221,7 +221,7 @@ bool DynamicRequestHandler::HandleDynatraceIntegrationRequest(std::list<TParam>&
 	if (sApiToken.length())
 		mpUfo->GetConfig().msDTApiToken = sApiToken;
 	if (sApiSelector.length())
-		mpUfo->GetConfig().msDTApiSelector = sApiSelector.replace('"', '\"');
+		mpUfo->GetConfig().msDTApiSelector = sApiSelector;
 	mpUfo->GetConfig().muDTInterval = uInterval;
 
 	if (mpUfo->GetConfig().Write())

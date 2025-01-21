@@ -388,7 +388,7 @@
 
 						<input type="text" name="dtenvid" placeholder="Environment ID (tenant) or complete URL (like 'https://mine.dynatrace.com/e/<environment id>')" id="dtenvid" />
 						<input type="text" name="dtapitoken" placeholder="API Token (problem v2 read access scope required)" id="dtapitoken" />
-						<input type="text" name="dtapiselector" placeholder="Problem Selector to be used for Problem API calls" id="dtapiselector" />
+						<input type="text" name="dtapiselector" placeholder='Problem Selector to be used for Problem API calls, escape any quotes eg. problemFilterNames.equals(\"SMS - Uptime Synthetics\")' id="dtapiselector" />
 						<input type="number" min="10" max="300" placeholder="polling interval in sec" name="dtinterval" id="dtinterval" />
 						<!--<ul class="list">
                         <li class="padded-for-list">
@@ -945,8 +945,7 @@
 						var result = JSON.parse(xhr.response);
 						document.getElementById('dtenabled').checked = (result.dtenabled == '1');
 						document.getElementById('dtenvid').value = result.dtenvid;
-						document.getElementById('dtapitoken').value = result.dtapitoken.substring(0, 31);
-						document.getElementById('dtapiselector').value = result.dtapiselector.replace(/"/g, '\"');
+						document.getElementById('dtapiselector').value = result.dtapiselector;
 						document.getElementById('dtinterval').value = result.dtinterval;
 					},
 					error: function (res, flagError, xhr) {
