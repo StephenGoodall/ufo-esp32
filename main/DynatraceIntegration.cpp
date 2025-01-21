@@ -121,6 +121,7 @@ void ParseIntegrationUrl(Url& rUrl, String& sEnvIdOrUrl, String& sApiToken, char
 
 void DynatraceIntegration::Run(__uint8_t uTaskId) {
     __uint8_t uConfigRevision = mActConfigRevision - 1;
+    String commonProblemSelector = "";
     vTaskDelay(5000 / portTICK_PERIOD_MS);
 	ESP_LOGD(LOGTAG, "Run");
     while (1) {
@@ -131,8 +132,7 @@ void DynatraceIntegration::Run(__uint8_t uTaskId) {
             }
 
             //If the selector is set we will add it to the subsequent calls
-            commonProblemSelector = "";
-            if (!mpConfig->msDTApiSelector.empty()){
+            if (mpConfig->msDTApiSelector.length() > 0){
                 commonProblemSelector = mpConfig->msDTApiSelector.c_str();
                 commonProblemSelector = commonProblemSelector + ",";
             }
