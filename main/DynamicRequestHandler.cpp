@@ -195,6 +195,7 @@ bool DynamicRequestHandler::HandleDynatraceIntegrationRequest(std::list<TParam>&
     DynatraceAction* dtHandleRequest = mpUfo->dt.enterAction("Handle Dynatrace Integration Request");	
 	String sEnvId;
 	String sApiToken;
+	String sApiSelector;
 	bool bEnabled = false;
 	__uint32_t uInterval = 0;
 
