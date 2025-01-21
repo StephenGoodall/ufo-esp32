@@ -229,6 +229,7 @@ bool DynamicRequestHandler::HandleDynatraceIntegrationRequest(std::list<TParam>&
 	if (mpUfo->GetConfig().Write())
 		mpUfo->GetDtIntegration().ProcessConfigChange();
 
+	ESP_LOGI(tag, "Setting Dynatrace Integration Selector: %s", sApiSelector.c_str());
 	ESP_LOGI(tag, "Dynatrace Integration Saved");
 
 	rResponse.AddHeader(HttpResponse::HeaderNoCache);
