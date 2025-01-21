@@ -231,6 +231,7 @@ bool DynamicRequestHandler::HandleDynatraceIntegrationRequest(std::list<TParam>&
 
 	rResponse.AddHeader(HttpResponse::HeaderNoCache);
 	rResponse.AddHeader("Location: /#!pagedynatraceintegrationsettings");
+	rResponse.AddHeader("Content-Length: 0");
 	rResponse.SetRetCode(302);
 	mpUfo->dt.leaveAction(dtHandleRequest);
 	return rResponse.Send();

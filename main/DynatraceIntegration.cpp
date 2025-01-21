@@ -92,7 +92,7 @@ void ParseIntegrationUrl(Url& rUrl, String& sEnvIdOrUrl, String& sApiToken, Stri
     String sHelp;
     ESP_LOGI(LOGTAG, "%s", sEnvIdOrUrl.c_str());
     ESP_LOGD(LOGTAG, "%s", sApiToken.c_str());
-    ESP_LOGD(LOGTAG, "%s", problemSelector.c_str());
+    ESP_LOGI(LOGTAG, "%s", problemSelector.c_str());
 
     if (sEnvIdOrUrl.length()){
         if (sEnvIdOrUrl.indexOf(".") < 0){ //an environment id
