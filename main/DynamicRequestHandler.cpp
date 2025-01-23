@@ -20,8 +20,12 @@ static char tag[] = "DynamicRequestHandler";
 //#define OTA_LATEST_FIRMWARE_URL "https://raw.githubusercontent.com/wolfgangB33r/ufo-esp32/master/firmware/ufo-esp32.bin"
 
 // Wolfgang Beer's clone repository Nightly Build Firmware Update URLs
-#define OTA_LATEST_FIRMWARE_JSON_URL "https://raw.githubusercontent.com/wolfgangB33r/ufo-esp32/master/nightly/version.json"
-#define OTA_LATEST_FIRMWARE_URL "https://raw.githubusercontent.com/wolfgangB33r/ufo-esp32/master/nightly/ufo-esp32.bin"
+//#define OTA_LATEST_FIRMWARE_JSON_URL "https://raw.githubusercontent.com/wolfgangB33r/ufo-esp32/master/nightly/version.json"
+//#define OTA_LATEST_FIRMWARE_URL "https://raw.githubusercontent.com/wolfgangB33r/ufo-esp32/master/nightly/ufo-esp32.bin"
+
+// Stephen Goodall's clone repository Nightly Build Firmware Update URLs
+#define OTA_LATEST_FIRMWARE_JSON_URL "https://raw.githubusercontent.com/StephenGoodall/ufo-esp32/master/nightly/version.json"
+#define OTA_LATEST_FIRMWARE_URL "https://raw.githubusercontent.com/StephenGoodall/ufo-esp32/master/nightly/ufo-esp32.bin"
 
 DynamicRequestHandler::DynamicRequestHandler(Ufo* pUfo, DisplayCharter* pDCLevel1, DisplayCharter* pDCLevel2) {
 	mpUfo = pUfo;
