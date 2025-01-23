@@ -9,6 +9,8 @@ flash: all
 
 all: main/indexhtml.h 
 
+all: main/faviconico.h 
+
 all: main/fontttf.h 
 
 all: main/fontsvg.h 
@@ -23,6 +25,9 @@ all: main/keypem.h
 
 main/indexhtml.h: data/index.html
 	python data2h.py data/index.html main/indexhtml.h
+
+main/faviconico.h: data/favicon.ico
+	python data2h.py data/favicon.ico main/faviconico.h
 
 main/fontttf.h: data/material-design-icons.ttf
 	python data2h.py data/material-design-icons.ttf main/fontttf.h

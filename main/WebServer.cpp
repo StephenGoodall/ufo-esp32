@@ -12,6 +12,7 @@
 #include "fontsvg.h"
 #include "fonteot.h"
 #include "indexhtml.h"
+#include "faviconico.h"
 #include "keypem.h"
 #include "certpem.h"
 

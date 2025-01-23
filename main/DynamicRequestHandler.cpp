@@ -594,6 +594,8 @@ bool DynamicRequestHandler::HandleCheckFirmwareRequest(std::list<TParam>& params
 	version = version.substring(i + 1, version.indexOf('"', i + 1));
 	ESP_LOGD(tag, "Version format %s", version.c_str());
 	if (!version.equalsIgnoreCase(FIRMWARE_VERSION)){
+		ESP_LOGI(tag, "Current Firmware version: %s", FIRMWARE_VERSION.c_str());
+		ESP_LOGI(tag, "New Firmware version found: %s", version.c_str());
 		sBody = "{\"newversion\":\"Firmware available: ";
 		sBody += version;
 		sBody += "\"}";
