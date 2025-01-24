@@ -14,6 +14,7 @@
 #include "fontsvg.h"
 #include "fonteot.h"
 #include "indexhtml.h"
+#include "faviconico.h"
 #include "keypem.h"
 #include "certpem.h"
 
@@ -52,6 +53,11 @@ bool UfoWebServer::HandleRequest(HttpRequestParser& httpParser, HttpResponse& ht
 		httpResponse.AddHeader(HttpResponse::HeaderContentTypeHtml);
 		httpResponse.AddHeader("Content-Encoding: gzip");
 		if (!httpResponse.Send(indexhtml_h, sizeof(indexhtml_h)))
+			return false;
+	}
+	if (httpParser.GetUrl().equals("/") || httpParser.GetUrl().equals("/favicon.ico")){
+		httpResponse.AddHeader(HttpResponse::HeaderContentTypeBinary);
+		if (!httpResponse.Send(faviconico_h, sizeof(faviconico_h)))
 			return false;
 	}
 	else if (httpParser.GetUrl().equals("/fonts/material-design-icons.woff")){
