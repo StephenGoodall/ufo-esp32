@@ -13,6 +13,7 @@ ApiStore::~ApiStore() {
 void ApiStore::Init(){
 
 	if (!ReadApis()){
+		mApis.push_back("/api?logo_reset&top_init&bottom_init");
 		mApis.push_back("/api?logo=ff0000|00ff00|0000ff|ff00cc");
 		mApis.push_back("/api?logo_reset");
 		mApis.push_back("/api?top_init&top=0|15|00ff00&top_morph=1000|5&bottom_init&bottom=0|15|00ff00&bottom_morph=1000|5");
@@ -21,6 +22,7 @@ void ApiStore::Init(){
 		mApis.push_back("/api?top_init&top=0|1|ff0000&top_bg=00ff00&top_whirl=240|ccw&bottom_init&bottom=0|1|00ff00&bottom_bg=ff0000&bottom_whirl=190");
 		mApis.push_back("/api?top_init&top=0|15|ff0000&top_morph=80|8&bottom_init&bottom=0|15|ff0000&bottom_morph=80|8&logo=ff0000|ff0000|ff0000|ff0000");
 		mApis.push_back("/api?top_init&top=0|15|ff0000&bottom_init&bottom=0|15|00ff00");
+		mApis.push_back("/api?top=0|3|ff0000&top=3|3|ffff00&top=6|3|00ff00&top=9|3|0040ff&top=12|3|ff00bf&top_whirl=125|ccw&bottom=0|3|ff0000&bottom=3|3|ffff00&bottom=6|3|00ff00&bottom=9|3|0040ff&bottom=12|3|ff00bf&bottom_whirl=125&logo=ff00bf|ff0000|00ff00|0040ff");
 	}
 }
 
