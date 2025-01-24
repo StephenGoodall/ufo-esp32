@@ -7,7 +7,6 @@
 #include <esp_log.h>
 #include "Ota.h"
 #include "String.h"
-#include <algorithm>
 #include "WebClient.h"
 
 static char tag[] = "DynamicRequestHandler";
@@ -182,7 +181,7 @@ bool DynamicRequestHandler::HandleInfoRequest(std::list<TParam>& params, HttpRes
 	sBody.printf("\"dtenabled\":\"%u\",", mpUfo->GetConfig().mbDTEnabled);
 	sBody.printf("\"dtenvid\":\"%s\",", mpUfo->GetConfig().msDTEnvIdOrUrl.c_str());
 	//sBody.printf("\"dtapitoken\":\"%s\",", mpUfo->GetConfig().msDTApiToken.c_str());
-	sBody.printf("\"dtapiselector\":\"%s\",", std::replace( mpUfo->GetConfig().msDTApiSelector.c_str().begin(), mpUfo->GetConfig().msDTApiSelector.c_str().end(), '"', '\"'));
+	sBody.printf("\"dtapiselector\":\"%s\",", mpUfo->GetConfig().msDTApiSelector.c_str().replace("\"", "\\\""));
 	sBody.printf("\"dtinterval\":\"%u\",", mpUfo->GetConfig().muDTInterval);
 	sBody.printf("\"dtmonitoring\":\"%u\",", mpUfo->GetConfig().mbDTMonitoring);
 	sBody.printf("\"wifimode\":\"%u\"", mpUfo->GetConfig().muWifiMode);
