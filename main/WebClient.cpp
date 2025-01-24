@@ -282,7 +282,7 @@ unsigned short WebClient::HttpExecuteSecure() {
 	ESP_LOGD(LOGTAG, "Setting hostname for TLS session...");
 
 	/* Hostname set here should match CN in server certificate */
-	if ((ret = mbedtls_ssl_set_hostname(&ssl, mpUrl->GetHost.c_str())) != 0) {
+	if ((ret = mbedtls_ssl_set_hostname(&ssl, mpUrl->GetHost().c_str())) != 0) {
 		ESP_LOGE(LOGTAG, "mbedtls_ssl_set_hostname returned -0x%x", -ret);
 		goto exit;
 	}
