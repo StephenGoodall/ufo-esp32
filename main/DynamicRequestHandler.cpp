@@ -181,7 +181,11 @@ bool DynamicRequestHandler::HandleInfoRequest(std::list<TParam>& params, HttpRes
 	sBody.printf("\"dtenabled\":\"%u\",", mpUfo->GetConfig().mbDTEnabled);
 	sBody.printf("\"dtenvid\":\"%s\",", mpUfo->GetConfig().msDTEnvIdOrUrl.c_str());
 	//sBody.printf("\"dtapitoken\":\"%s\",", mpUfo->GetConfig().msDTApiToken.c_str());
-	sBody.printf("\"dtapiselector\":\"%s\",", mpUfo->GetConfig().msDTApiSelector.replace("\"", "\\\"").c_str());
+	
+	String apiSelector = mpUfo->GetConfig().msDTApiSelector;
+	apiSelector.replace("\"", "\\\"");
+	sBody.printf("\"dtapiselector\":\"%s\",", apiSelector.c_str());
+
 	sBody.printf("\"dtinterval\":\"%u\",", mpUfo->GetConfig().muDTInterval);
 	sBody.printf("\"dtmonitoring\":\"%u\",", mpUfo->GetConfig().mbDTMonitoring);
 	sBody.printf("\"wifimode\":\"%u\"", mpUfo->GetConfig().muWifiMode);
