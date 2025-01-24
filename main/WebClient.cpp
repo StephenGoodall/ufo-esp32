@@ -283,7 +283,7 @@ unsigned short WebClient::HttpExecuteSecure() {
 
 	/* Hostname set here should match CN in server certificate */
 	if ((ret = mbedtls_ssl_set_hostname(&ssl, mpUrl->GetPortAsString().c_str())) != 0) {
-		ESP_LOGI(LOGTAG, "mbedtls_ssl_set_hostname %s", mpUrl->GetPortAsString());
+		ESP_LOGI(LOGTAG, "mbedtls_ssl_set_hostname %s", mpUrl->GetPortAsString().c_str());
 		ESP_LOGE(LOGTAG, "mbedtls_ssl_set_hostname returned -0x%x", -ret);
 		goto exit;
 	}
