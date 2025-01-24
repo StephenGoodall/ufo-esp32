@@ -21,6 +21,7 @@ jobs:
     - name: Data to header file conversion
       run: |
         python data2h.py data/index.html main/indexhtml.h
+        python data2h.py data/favicon.ico main/faviconico.h
         python data2h.py data/material-design-icons.ttf main/fontttf.h
         python data2h.py data/material-design-icons.woff main/fontwoff.h
         python data2h.py data/material-design-icons.svg main/fontsvg.h
